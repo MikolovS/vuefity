@@ -1,7 +1,7 @@
 <template>
   <v-app light>
-    <v-content>
-        <nav-bar></nav-bar>
+    <nav-bar></nav-bar>
+    <v-content app>
         <router-view></router-view>
     </v-content>
 <footer-bar></footer-bar>
@@ -20,7 +20,6 @@
     data () {
       return {
       }
-    },
-
+    }
   }
 </script>
