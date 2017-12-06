@@ -2,7 +2,7 @@ import Home from '@/components/home/Home'
 
 export default [
   {
-    path: '',
+    path: '/',
     component: Home,
     meta: {title: 'Главная'}
   }
