@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NavBar from '@/components/menu/NavBar'
+import {auth} from '@/services/auth'
 
 import home from '@/components/home/home.router'
 import qwerty from '@/components/qwerty/qwerty.router'
@@ -30,6 +31,7 @@ const router = new Router({
     ]
 });
 
+// const isLogin = auth.isAuthenticated();
 const isLogin = true;
 
 router.beforeEach((to, from, next) => {
