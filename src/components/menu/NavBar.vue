@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <v-navigation-drawer
             fixed
             :clipped="clipped"
@@ -39,12 +39,11 @@
               name: 'NavBar',
               clipped: false,
               drawer: false,
-              fixed: false,
+              fixed: true,
               items: [{
                   icon: 'bubble_chart',
                   title: 'Inspire'
               }],
-              right: true,
               title: 'Vuetify.js'
           }
       }
@@ -52,5 +51,7 @@
 </script>
 
 <style scoped>
-
+    .main {
+        min-height: 100%;
+    }
 </style>
