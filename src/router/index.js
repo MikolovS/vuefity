@@ -5,8 +5,9 @@ import {auth} from '@/services/auth'
 
 import home from '@/components/home/home.router'
 import qwerty from '@/components/qwerty/qwerty.router'
+import blog from '@/components/blog/blog.router'
 
-let appRoutes = [...home, ...qwerty];
+let appRoutes = [...home, ...qwerty, ...blog];
 
 Vue.use(Router);
 
