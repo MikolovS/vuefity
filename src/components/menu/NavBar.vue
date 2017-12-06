@@ -30,7 +30,10 @@
 </template>
 
 <script>
+  import VContent from "vuetify/es5/components/VGrid/VContent";
+
   export default {
+      components: {VContent},
       data () {
           return {
               name: 'NavBar',

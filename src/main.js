@@ -40,9 +40,9 @@ Vue.use(Vuetify, {
     success: '#4CAF50',
     warning: '#FFC107'
   }
-})
+});
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
@@ -50,4 +50,4 @@ new Vue({
   router,
   template: '<App/>',
   components: { App }
-})
+});
