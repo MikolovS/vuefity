@@ -16,7 +16,6 @@
 export default {
     name: 'Qwerty',
   data () {
-        console.log(this.$route.path);
     return {
     }
   }

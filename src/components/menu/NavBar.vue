@@ -44,7 +44,7 @@
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
         <v-toolbar-items v-for="(item, i) in navLinks" :key="i" class="hidden-sm-and-down">
-            <v-btn flat v-bind:href="item.to">{{item.title}}</v-btn>
+            <v-btn flat :href="item.to" :class="[active(item.to) ? 'btn--active': '']">{{item.title}}</v-btn>
         </v-toolbar-items>
     </v-toolbar>
       <router-view></router-view>
@@ -58,7 +58,11 @@
   export default {
       components: {
           VDivider,
-          VContent},
+          VContent
+      },
+      computed: {
+
+      },
       data () {
           return {
               name: 'NavBar',
@@ -83,6 +87,11 @@
                       icon: 'bubble_chart',
                   }
               ]
+          }
+      },
+      methods: {
+          active(path) {
+              return ('#' + this.$route.path) === path
           }
       }
   }
