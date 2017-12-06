@@ -24,6 +24,10 @@
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
+        <v-toolbar-items v-for="(item, i) in navLinks"
+                         :key="i">
+            <v-btn flat to=item.to>{{item.name}}</v-btn>
+        </v-toolbar-items>
     </v-toolbar>
       <router-view></router-view>
   </div>
@@ -44,7 +48,18 @@
                   icon: 'bubble_chart',
                   title: 'Inspire'
               }],
-              title: 'Vuetify.js'
+              title: 'Vuetify.js',
+
+              navLinks: [
+                  {
+                      name: 'Home',
+                      to: '/'
+                  },
+                  {
+                      name: 'Qwerty',
+                      to: '/qwerty'
+                  }
+              ]
           }
       }
   }
