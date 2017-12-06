@@ -1,9 +1,11 @@
 <template>
   <div class="main">
     <v-navigation-drawer
+            temporary
+            v-model="drawer"
+            absolute
             fixed
             :clipped="clipped"
-            v-model="drawer"
             app
      value="">
       <v-list>
@@ -16,13 +18,13 @@
           </v-list-tile-content>
         </v-list-tile>
           <v-toolbar flat>
-              <v-list>
-                  <v-list-tile>
-                      <v-list-tile-title class="title">
-                          Application
-                      </v-list-tile-title>
-                  </v-list-tile>
-              </v-list>
+            <v-list>
+                <v-list-tile>
+                    <v-list-tile-title class="title">
+                        Application
+                    </v-list-tile-title>
+                </v-list-tile>
+            </v-list>
           </v-toolbar>
           <v-divider></v-divider>
           <v-list dense class="pt-0">
@@ -38,7 +40,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar fixed app :clipped-left="clipped">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon class="hidden-sm-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
         <v-toolbar-items v-for="(item, i) in navLinks" :key="i">
             <v-btn flat v-bind:href="item.to">{{item.title}}</v-btn>
@@ -50,9 +52,12 @@
 
 <script>
   import VContent from "vuetify/es5/components/VGrid/VContent";
+  import VDivider from "vuetify/es5/components/VDivider/VDivider";
 
   export default {
-      components: {VContent},
+      components: {
+          VDivider,
+          VContent},
       data () {
           return {
               name: 'NavBar',
