@@ -54,36 +54,36 @@
         </v-list>
       </v-list>
     </v-navigation-drawer>
-      <v-toolbar fixed app :clipped-left="clipped">
-        <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title v-text="title" class="pl-5"></v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items v-if="!isMobile" v-for="(item, i) in navLinks" :key="i" class="hidden-sm-and-down">
-          <v-btn flat :href="item.to" :class="[active(item.to) ? 'btn--active': '']">{{item.title}}</v-btn>
-        </v-toolbar-items>
-        <v-spacer></v-spacer>
-        <v-toolbar-items v-if="!isMobile" class="hidden-sm-and-down pr-5">
-          <v-menu offset-y>
-            <v-btn flat slot="activator">
-              {{user.name}}
-              <v-avatar class="grey lighten-4 pl-3" size="40px">
-                <img :src="user.img" alt="avatar">
-              </v-avatar>
-            </v-btn>
-            <v-list dense>
-              <v-list-tile v-for="item in userLinks" :key="item.title" :href="item.to">
-                <v-list-tile-action>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-        </v-toolbar-items>
-      </v-toolbar>
-      <router-view></router-view>
+    <v-toolbar fixed app :clipped-left="clipped">
+      <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title v-text="title" :class="[isMobile ? '' : 'pl-5']"></v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items v-if="!isMobile" v-for="(item, i) in navLinks" :key="i" class="hidden-sm-and-down">
+        <v-btn flat :href="item.to" :class="[active(item.to) ? 'btn--active': '']">{{item.title}}</v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-toolbar-items v-if="!isMobile" class="hidden-sm-and-down pr-5">
+        <v-menu offset-y>
+          <v-btn flat slot="activator">
+            {{user.name}}
+            <v-avatar class="grey lighten-4 pl-3" size="40px">
+              <img :src="user.img" alt="avatar">
+            </v-avatar>
+          </v-btn>
+          <v-list dense>
+            <v-list-tile v-for="item in userLinks" :key="item.title" :href="item.to">
+              <v-list-tile-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+      </v-toolbar-items>
+    </v-toolbar>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -167,6 +167,7 @@
 </script>
 
 <style scoped>
+  /* для бокового меню */
     .main {
         min-height: 100%;
     }
