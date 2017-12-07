@@ -8,9 +8,10 @@
             fixed
             :clipped="clipped"
             app
-     value="">
+            value=""
+     >
       <v-list>
-        <v-list-tile value="true" v-for="(item, i) in items" :key="i">
+        <v-list-tile value="true">
           <v-list-tile-action>
             <v-avatar class="grey lighten-4">
               <img :src="user.img" alt="avatar">
@@ -109,10 +110,6 @@
               clipped: false,
               drawer: false,
               fixed: true,
-              items: [{
-                  icon: 'bubble_chart',
-                  title: 'Inspire'
-              }],
               title: 'Vuetify.js',
 
               navLinks: [
