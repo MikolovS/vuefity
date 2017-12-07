@@ -73,7 +73,7 @@ export default {
             },
             {
                 title: 'Test title2',
-                img: 'src/assets/section.jpg',
+                img: 'src/assets/plane.jpg',
                 hashtags: [
                     '#test_hashtag',
                     '#test_hashtag1',

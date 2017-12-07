@@ -43,24 +43,25 @@
           </v-list>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app :clipped-left="clipped">
-      <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-toolbar fixed app :clipped-left="clipped">
+        <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <v-toolbar-title v-text="title" class="pl-5"></v-toolbar-title>
+        <v-spacer></v-spacer>
         <v-toolbar-items v-for="(item, i) in navLinks" :key="i" class="hidden-sm-and-down">
-            <v-btn flat :href="item.to" :class="[active(item.to) ? 'btn--active': '']">{{item.title}}</v-btn>
+          <v-btn flat :href="item.to" :class="[active(item.to) ? 'btn--active': '']">{{item.title}}</v-btn>
         </v-toolbar-items>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>
-          {{user.name}}
-          <v-avatar
-                  class="grey lighten-4"
-          >
-            <img :src="user.img" alt="avatar">
-          </v-avatar>
-        </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-sm-and-down pr-5">
+          <v-btn flat>
+            {{user.name}}
+            <v-avatar
+                    class="grey lighten-4"
+            >
+              <img :src="user.img" alt="avatar">
+            </v-avatar>
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
       <router-view></router-view>
   </div>
 </template>
