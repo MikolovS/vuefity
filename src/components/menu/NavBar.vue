@@ -100,13 +100,12 @@
           VContent
       },
       computed: {
-        isMobile: function () {
-            return window.innerWidth < 960;
-        }
+
       },
       data () {
           return {
               name: 'NavBar',
+              isMobile: window.innerWidth < 960,
               clipped: false,
               drawer: false,
               fixed: true,
@@ -153,9 +152,18 @@
               }
           }
       },
+      mounted () {
+          this.onResize();
+      },
       methods: {
           active(path) {
               return ('#' + this.$route.path) === path
+          },
+          onResize () {
+              let that = this;
+              return window.addEventListener('resize', function() {
+                  that.isMobile = window.innerWidth < 960;
+              });
           }
       }
   }
