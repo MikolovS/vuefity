@@ -3,17 +3,18 @@
     <v-layout row wrap>
       <v-flex
         xs12
-        sm6
-        md4
-        lg3
+        sm8 offset-sm2
+        md8 offset-md2
+        lg6 offset-lg3
         v-for="(post, i) in posts"
         :key="i"
       >
         <v-card>
           <v-card-media
-                  class="white--text"
-                  :src="post.img"
-                  height="400px"
+            class="white--text"
+            :src="post.img"
+            height="450px"
+            @click="openModal(post)"
           >
             <v-container fill-height fluid>
               <v-layout fill-height>
@@ -39,23 +40,28 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <modal-blog v-if="dialog" :post="selectedPost" :dialog.sync="dialog"></modal-blog>
   </v-container>
 </template>
 
 <script>
-
 import VCard from "vuetify/es5/components/VCard/VCard";
 import VCardMedia from "vuetify/es5/components/VCard/VCardMedia";
 import VCardTitle from "vuetify/es5/components/VCard/VCardTitle";
+import ModalBlog from "@/components/blog/ModalBlog"
 
 export default {
     components: {
         VCardTitle,
         VCardMedia,
-        VCard},
+        VCard,
+        ModalBlog
+    },
     name: 'Blog',
   data () {
     return {
+        dialog: false,
+        selectedPost: null,
         posts: [
             {
                 title: 'Test title',
@@ -107,7 +113,13 @@ export default {
             }
         ]
     }
-  }
+  },
+    methods: {
+        openModal(post) {
+          this.selectedPost = post;
+          this.dialog = true;
+        }
+    }
 }
 </script>
 
