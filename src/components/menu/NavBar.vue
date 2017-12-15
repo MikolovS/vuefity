@@ -2,6 +2,7 @@
   <div class="main">
     <v-navigation-drawer
             v-if="isMobile"
+            class="hidden-sm-and-up"
             temporary
             v-model="drawer"
             absolute
@@ -53,7 +54,8 @@
           </v-list-tile>
         </v-list>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer
+            v-if="isMobile">
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title" :class="[isMobile ? '' : 'pl-5']"></v-toolbar-title>

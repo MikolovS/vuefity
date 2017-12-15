@@ -37,6 +37,13 @@ export default {
         VDialog
     },
     name: 'ModalBlog',
+    computed: {
+//        dialog: function(){
+////            if (!this.dialog) {
+////                this.$emit('update:dialog', false)
+////            }
+//        }
+    },
   data () {
     return {
 

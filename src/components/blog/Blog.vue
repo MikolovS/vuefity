@@ -1,26 +1,24 @@
 <template>
+
   <v-container fluid v-bind="{ [`grid-list-${'xs'}`]: true }">
     <v-layout row wrap>
       <v-flex
         xs12
         sm8 offset-sm2
-        md8 offset-md2
-        lg6 offset-lg3
+        md4 offset-md4
+        lg4 offset-lg4
         v-for="(post, i) in posts"
         :key="i"
       >
         <v-card>
-          <v-card-media
-            class="white--text"
-            :src="post.img"
-            height="450px"
-            @click="openModal(post)"
-          >
-            <v-container fill-height fluid>
-              <v-layout fill-height>
-              </v-layout>
-            </v-container>
-          </v-card-media>
+          <!--<v-card-media-->
+            <!--class="white&#45;&#45;text"-->
+            <!--:src="post.img"-->
+            <!--height="450px"-->
+            <!--@click="openModal(post)"-->
+          <!--&gt;-->
+          <!--</v-card-media>-->
+          <img width="100%" :src="post.img" @click="openModal(post)"/>
           <v-btn icon>
             <v-icon>favorite</v-icon>
           </v-btn>
@@ -40,28 +38,77 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <modal-blog v-if="dialog" :post="selectedPost" :dialog.sync="dialog"></modal-blog>
+
+    <v-layout v-if="dialog" row wrap>
+
+        <v-dialog
+          v-model="dialog"
+          transition="dialog-fade-transition"
+          :fullscreen="$vuetify.breakpoint.xs"
+          maxWidth="60%"
+        >
+          <v-card>
+            <img style="width: 100% !important; max-height: inherit" :src="selectedPost.img"/>
+            <v-btn icon>
+              <v-icon>favorite</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>bookmark</v-icon>
+            </v-btn>
+            <v-btn icon @click="dialog = false">
+              <v-icon>share</v-icon>
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-card-title>
+              <div>
+                <span class="grey--text">{{selectedPost.title}}</span><br>
+                <span v-for="(hashtag, n) in selectedPost.hashtags" :key="n">{{hashtag}}</span>
+              </div>
+            </v-card-title>
+          </v-card>
+
+        </v-dialog>
+
+    </v-layout>
   </v-container>
+
 </template>
 
 <script>
+
 import VCard from "vuetify/es5/components/VCard/VCard";
 import VCardMedia from "vuetify/es5/components/VCard/VCardMedia";
 import VCardTitle from "vuetify/es5/components/VCard/VCardTitle";
-import ModalBlog from "@/components/blog/ModalBlog"
+import VDialog from "vuetify/es5/components/VDialog/VDialog";
 
 export default {
     components: {
         VCardTitle,
         VCardMedia,
         VCard,
-        ModalBlog
+        VDialog
     },
     name: 'Blog',
+    computed: {
+
+    },
   data () {
     return {
         dialog: false,
-        selectedPost: null,
+        selectedPost: {
+            title: '',
+            img: '',
+            hashtags: [
+                '',
+                '',
+                '',
+            ],
+            likes: 0,
+            comments:{
+                username: '',
+                text: ''
+            }
+        },
         posts: [
             {
                 title: 'Test title',
@@ -100,6 +147,20 @@ export default {
             {
                 title: 'Test3 title3',
                 img: 'src/assets/section.jpg',
+                hashtags: [
+                    '#teaweda',
+                    '#te1231231',
+                    '#tawdadaw',
+                ],
+                likes: 222,
+                comments:{
+                    username: 'Test2 User3',
+                    text: 'goood!'
+                }
+            },
+            {
+                title: 'Test3 title3',
+                img: 'src/assets/cherep.jpg',
                 hashtags: [
                     '#teaweda',
                     '#te1231231',
