@@ -6,8 +6,9 @@ import {auth} from '@/services/auth'
 import home from '@/components/home/home.router'
 import qwerty from '@/components/qwerty/qwerty.router'
 import blog from '@/components/blog/blog.router'
+import instagram from '@/components/instagram/instagram.router'
 
-let appRoutes = [...home, ...qwerty, ...blog];
+let appRoutes = [...home, ...qwerty, ...blog, ...instagram];
 
 Vue.use(Router);
 

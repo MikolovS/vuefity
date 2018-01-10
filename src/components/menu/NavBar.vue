@@ -126,8 +126,8 @@
                       icon: 'bubble_chart',
                   },
                   {
-                      title: 'Блог',
-                      to: '#/blog',
+                      title: 'Instagram',
+                      to: '#/instagram',
                       icon: 'theaters',
                   }
               ],

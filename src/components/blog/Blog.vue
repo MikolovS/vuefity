@@ -1,88 +1,57 @@
 <template>
 
-  <v-container fluid v-bind="{ [`grid-list-${'xs'}`]: true }">
-    <v-layout row wrap>
-      <v-flex
-        xs12
-        sm8 offset-sm2
-        md4 offset-md4
-        lg4 offset-lg4
-        v-for="(post, i) in posts"
-        :key="i"
-      >
-        <v-card>
-          <!--<v-card-media-->
-            <!--class="white&#45;&#45;text"-->
-            <!--:src="post.img"-->
-            <!--height="450px"-->
-            <!--@click="openModal(post)"-->
-          <!--&gt;-->
-          <!--</v-card-media>-->
-          <img width="100%" :src="post.img" @click="openModal(post)"/>
-          <v-btn icon>
-            <v-icon>favorite</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>bookmark</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>share</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-card-title>
-            <div>
-              <span class="grey--text">{{post.title}}</span><br>
-              <span v-for="(hashtag, n) in post.hashtags" :key="n">{{hashtag}}</span>
-            </div>
-          </v-card-title>
-        </v-card>
-      </v-flex>
-    </v-layout>
+  <!--<v-container fluid v-bind="{ [`grid-list-${'xs'}`]: true }">-->
+    <!--<v-layout row wrap>-->
+      <!--<v-flex-->
+              <!--xs12-->
+              <!--sm8 offset-sm2-->
+              <!--md4 offset-md4-->
+              <!--lg4 offset-lg4-->
+        <!--v-for="(post, i) in posts"-->
+        <!--:key="i"-->
+      <!--&gt;-->
+        <!--&lt;!&ndash;<div class="w3-content w3-display-container"&ndash;&gt;-->
+             <!--&lt;!&ndash;v-for="(item,i) in post.medias"&ndash;&gt;-->
+             <!--&lt;!&ndash;:key="i"&ndash;&gt;-->
+             <!--&lt;!&ndash;@click="openModal(post)"&ndash;&gt;-->
+        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;<img  v-bind:src="item[1].url" style="width:100%">&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-    <v-layout v-if="dialog" row wrap>
+      <!--</v-flex>-->
+    <!--</v-layout>-->
 
-        <v-dialog
-          v-model="dialog"
-          transition="dialog-fade-transition"
-          :fullscreen="$vuetify.breakpoint.xs"
-          maxWidth="60%"
-        >
-          <v-card>
-            <img style="width: 100% !important; max-height: inherit" :src="selectedPost.img"/>
-            <v-btn icon>
-              <v-icon>favorite</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>bookmark</v-icon>
-            </v-btn>
-            <v-btn icon @click="dialog = false">
-              <v-icon>share</v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-card-title>
-              <div>
-                <span class="grey--text">{{selectedPost.title}}</span><br>
-                <span v-for="(hashtag, n) in selectedPost.hashtags" :key="n">{{hashtag}}</span>
-              </div>
-            </v-card-title>
-          </v-card>
 
-        </v-dialog>
+    <!--<img src="https://scontent-waw1-1.cdninstagram.com/vp/cec75afe00dbec19599f62470c08e76e/5A4E0416/t50.2886-16/26246943_871880202980067_5472363995788648890_n.mp4" alt="" style="height: 640px; width: 640px">-->
+    <!--<video width="640" height="640" controls>-->
+      <!--<source src="https://scontent-waw1-1.cdninstagram.com/vp/cec75afe00dbec19599f62470c08e76e/5A4E0416/t50.2886-16/26246943_871880202980067_5472363995788648890_n.mp4" alt="" style="height: 640px; width: 640px" type="video/mp4">-->
+    <!--</video>-->
+  <!--</v-container>-->
 
-    </v-layout>
-  </v-container>
+  <div class='gallery'>
+    <div  v-for="(item,i) in post.medias"
+          :key="i" @click="selectImage(img)">
+      <img v-bind:src="img.url">
+    </div>
+  </div>
 
 </template>
 
 <script>
-
+import Axios from '@/axiosInstance';
 import VCard from "vuetify/es5/components/VCard/VCard";
 import VCardMedia from "vuetify/es5/components/VCard/VCardMedia";
 import VCardTitle from "vuetify/es5/components/VCard/VCardTitle";
 import VDialog from "vuetify/es5/components/VDialog/VDialog";
+import VCarousel from "vuetify/es5/components/VCarousel/VCarousel";
+import VCarouselItem from "vuetify/es5/components/VCarousel/VCarouselItem";
+
+import {instagramConstants} from '@/constants';
 
 export default {
     components: {
+        VCarouselItem,
+        VCarousel,
         VCardTitle,
         VCardMedia,
         VCard,
@@ -92,8 +61,17 @@ export default {
     computed: {
 
     },
+    created() {
+        let that = this;
+        that.getFeed();
+    },
   data () {
     return {
+        page: 1,
+        on_page: 10,
+        PHOTO: 1,
+        ALBUM: 8,
+        VIDEO: 2,
         dialog: false,
         selectedPost: {
             title: '',
@@ -109,76 +87,30 @@ export default {
                 text: ''
             }
         },
-        posts: [
-            {
-                title: 'Test title',
-                img: 'src/assets/section.jpg',
-                hashtags: [
-                    '#test_hashtag',
-                    '#test_hashtag1',
-                    '#test_hashtag2',
-                ],
-                likes: 173,
-                comments:{
-                    username: 'Test User',
-                    text: 'goood!'
-                }
-            },
-            {
-                title: 'Test title2',
-                img: 'src/assets/plane.jpg',
-                hashtags: [
-                    '#test_hashtag',
-                    '#test_hashtag1',
-                    '#test_hashtag2',
-                ],
-                likes: 63,
-                comments:[
-                    {
-                    username: 'Test2 User2',
-                    text: 'aaaaaaaa!'
-                    },
-                    {
-                        username: 'Test3 User23',
-                        text: 'a3423432aa!'
-                    }
-                ]
-            },
-            {
-                title: 'Test3 title3',
-                img: 'src/assets/section.jpg',
-                hashtags: [
-                    '#teaweda',
-                    '#te1231231',
-                    '#tawdadaw',
-                ],
-                likes: 222,
-                comments:{
-                    username: 'Test2 User3',
-                    text: 'goood!'
-                }
-            },
-            {
-                title: 'Test3 title3',
-                img: 'src/assets/cherep.jpg',
-                hashtags: [
-                    '#teaweda',
-                    '#te1231231',
-                    '#tawdadaw',
-                ],
-                likes: 222,
-                comments:{
-                    username: 'Test2 User3',
-                    text: 'goood!'
-                }
-            }
-        ]
+        posts: []
     }
   },
     methods: {
         openModal(post) {
           this.selectedPost = post;
           this.dialog = true;
+        },
+         getFeed() {
+            let that = this;
+            let params = {
+                page: this.page,
+                on_page: this.on_page,
+            };
+            Axios.get(instagramConstants.feed, {
+                params: params
+            })
+                .then((res)=> {
+                console.log(res.data[0].medias);
+                that.posts = res.data;
+                })
+                .catch((error)=> {
+                    console.log('error');
+                })
         }
     }
 }

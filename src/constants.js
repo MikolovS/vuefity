@@ -1,8 +1,10 @@
-// const API = 'https://api-cms.puzzland.dals.media';
-const API = 'http://0.0.0.0:999/';
+const API = 'http://localhost:666/api/';
 
 const homeConstants = {
   home: '',
 };
 
-export { API, homeConstants}
+const instagramConstants = {
+    feed: 'instagram',
+};
+export { API, homeConstants, instagramConstants}
