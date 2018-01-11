@@ -1,27 +1,23 @@
 <template>
 
-  <v-layout>
-    <v-flex xs12>
-      <v-card>
-        <v-container fluid v-bind="{ [`grid-list-xs`]: false }">
-          <v-layout row wrap>
-            <v-flex
-                    xs4
-                    v-for="(post,i) in posts"
-                    :key="i"
-            >
-              <v-card flat tile>
-                <v-card-media
-                        :src="post.medias[0][0].url"
-                        height="250px"
-                        width="250px"
-                >
-                </v-card-media>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
+  <v-layout
+          column
+          wrap
+          class="my-5"
+          align-center
+  >
+    <v-flex xs12 lg6>
+        <v-layout row wrap align-center>
+          <v-flex xs4 md3
+            v-for="(post, i) in posts"
+            key="i"
+          >
+            <div style="background-color: green; border: 1px solid black; height: 150px;"
+            :background-image="post.medias[0][1].url"
+            >1</div>
+            <!--<img v-if="post.media_type !== VIDEO" :src="post.medias[0][1].url" :alt="post.medias[0][1].url">-->
+          </v-flex>
+        </v-layout>
     </v-flex>
   </v-layout>
 
@@ -58,7 +54,7 @@
         data () {
             return {
                 page: 1,
-                on_page: 1,
+                on_page: 40,
                 PHOTO: 1,
                 ALBUM: 8,
                 VIDEO: 2,
@@ -97,7 +93,7 @@
                     .then((res)=> {
 //                        console.log(res.data[0].medias);
                         that.posts = res.data;
-                        console.log(that.posts[0].medias[0][0].url);
+//                        console.log(that.posts[0].medias[0][0].url);
                     })
                     .catch((error)=> {
                         console.log('error');
@@ -108,8 +104,12 @@
 </script>
 
 <style scoped>
- .carousel {
-  overflow: inherit !important;
-   height: auto !important;
- }
+  img {
+    width: 100%;
+    /*height: 150px;*/
+  }
+ /*.carousel {*/
+  /*overflow: inherit !important;*/
+   /*height: auto !important;*/
+ /*}*/
 </style>
