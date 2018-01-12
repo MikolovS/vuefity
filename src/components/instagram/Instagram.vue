@@ -1,25 +1,17 @@
 <template>
 
-  <v-layout
-          column
-          wrap
-          class="my-5"
-          align-center
-  >
-    <v-flex xs12 lg6>
+
+    <v-flex xs12 lg6 wrap column>
         <v-layout row wrap align-center>
           <v-flex xs4 md3
             v-for="(post, i) in posts"
             key="i"
           >
-            <div style="background-color: green; border: 1px solid black; height: 150px;"
-            :background-image="post.medias[0][1].url"
-            >1</div>
-            <!--<img v-if="post.media_type !== VIDEO" :src="post.medias[0][1].url" :alt="post.medias[0][1].url">-->
+            <div class="bg_img" :style="{ 'background-image': 'url(' + post.medias[0][0].url + ')' }"></div>
           </v-flex>
         </v-layout>
     </v-flex>
-  </v-layout>
+
 
 </template>
 
@@ -53,8 +45,8 @@
         },
         data () {
             return {
-                page: 1,
-                on_page: 40,
+                page: 2,
+                on_page: 6,
                 PHOTO: 1,
                 ALBUM: 8,
                 VIDEO: 2,
@@ -93,7 +85,8 @@
                     .then((res)=> {
 //                        console.log(res.data[0].medias);
                         that.posts = res.data;
-//                        console.log(that.posts[0].medias[0][0].url);
+                        console.log(that.posts[0].medias[0][0].url);
+//                        console.log(that.posts);
                     })
                     .catch((error)=> {
                         console.log('error');
@@ -104,9 +97,15 @@
 </script>
 
 <style scoped>
-  img {
-    width: 100%;
-    /*height: 150px;*/
+  .bg_img {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    max-height: 240px;
+    min-height: 150px;
+    min-width: 150px;
+    max-width: 240px;
   }
  /*.carousel {*/
   /*overflow: inherit !important;*/
