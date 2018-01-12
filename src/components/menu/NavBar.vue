@@ -85,7 +85,7 @@
         </v-menu>
       </v-toolbar-items>
     </v-toolbar>
-    <router-view></router-view>
+    <main-content></main-content>
   </div>
 </template>
 
@@ -94,13 +94,15 @@
   import VDivider from "vuetify/es5/components/VDivider/VDivider";
   import VAvatar from "vuetify/es5/components/VAvatar/VAvatar";
   import VMenu from "vuetify/es5/components/VMenu/VMenu";
+  import MainContent from '@/components/content/Content'
 
   export default {
       components: {
           VMenu,
           VAvatar,
           VDivider,
-          VContent
+          VContent,
+          MainContent
       },
       computed: {
 

@@ -4,6 +4,6 @@ export default [
   {
     path: '/instagram',
     component: Instagram,
-    meta: {title: 'Блог'}
+    meta: {title: 'InstagramPage'}
   }
 ]

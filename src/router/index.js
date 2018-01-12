@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import NavBar from '@/components/menu/NavBar'
+import Content from '@/components/content/Content'
 import {auth} from '@/services/auth'
 
 import home from '@/components/home/home.router'
@@ -21,7 +21,7 @@ const router = new Router({
         },
         {
             path: '/',
-            component: NavBar,
+            component: Content,
             children: appRoutes,
         },
         // {
