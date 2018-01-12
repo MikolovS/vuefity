@@ -1,16 +1,27 @@
 <template>
 
+  <v-layout
+          column
+          align-center
+          justify-center
+          class="white--text"
+  >
+  <v-flex xs12 lg6 wrap column>
+    <v-layout row wrap align-center>
+      <v-flex xs4 md3
+              v-for="(post, i) in posts"
+              key="i"
+              class="instagram_flex_box"
+      >
+        <div
 
-    <v-flex xs12 lg6 wrap column>
-        <v-layout row wrap align-center>
-          <v-flex xs4 md3
-            v-for="(post, i) in posts"
-            key="i"
-          >
-            <div class="bg_img" :style="{ 'background-image': 'url(' + post.medias[0][0].url + ')' }"></div>
-          </v-flex>
-        </v-layout>
-    </v-flex>
+          class="bg_img"
+          :style="{ 'background-image': 'url(' + post.medias[0][0].url + ')' , 'height': boxHeight + 'px'}"></div>
+      </v-flex>
+    </v-layout>
+  </v-flex>
+
+  </v-layout>
 
 
 </template>
@@ -39,6 +50,9 @@
         computed: {
 
         },
+        mounted () {
+            this.onResize();
+        },
         created() {
             let that = this;
             that.getFeed();
@@ -50,6 +64,7 @@
                 PHOTO: 1,
                 ALBUM: 8,
                 VIDEO: 2,
+                boxHeight: document.querySelector('.instagram_flex_box').offsetWidth,
                 dialog: false,
                 selectedPost: {
                     title: '',
@@ -69,6 +84,12 @@
             }
         },
         methods: {
+            onResize () {
+                let that = this;
+                return window.addEventListener('resize', function() {
+                    that.boxHeight = document.querySelector('.instagram_flex_box').offsetWidth;
+                });
+            },
             openModal(post) {
                 this.selectedPost = post;
                 this.dialog = true;
@@ -102,10 +123,10 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    max-height: 240px;
-    min-height: 150px;
-    min-width: 150px;
-    max-width: 240px;
+    /*max-height: 240px;*/
+    min-height: 100px;
+    min-width: 100px;
+    /*max-width: 240px;*/
   }
  /*.carousel {*/
   /*overflow: inherit !important;*/
