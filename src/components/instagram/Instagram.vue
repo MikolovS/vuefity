@@ -51,7 +51,6 @@
 
         },
         mounted () {
-            this.onResize();
         },
         created() {
             let that = this;
@@ -84,12 +83,6 @@
             }
         },
         methods: {
-            onResize () {
-                let that = this;
-                return window.addEventListener('resize', function() {
-                    that.boxHeight = document.querySelector('.instagram_flex_box').offsetWidth;
-                });
-            },
             openModal(post) {
                 this.selectedPost = post;
                 this.dialog = true;
@@ -100,9 +93,7 @@
                     page: this.page,
                     on_page: this.on_page,
                 };
-                Axios.get(instagramConstants.feed, {
-                    params: params
-                })
+                Axios.get(instagramConstants.feed, params)
                     .then((res)=> {
 //                        console.log(res.data[0].medias);
                         that.posts = res.data;

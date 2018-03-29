@@ -1,7 +1,6 @@
 <template>
   <div class="main">
     <v-navigation-drawer
-            v-if="isMobile"
             class="hidden-sm-and-up"
             temporary
             v-model="drawer"
@@ -54,17 +53,16 @@
           </v-list-tile>
         </v-list>
       </v-list>
-    </v-navigation-drawer
-            v-if="isMobile">
+    </v-navigation-drawer>
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title" :class="[isMobile ? '' : 'pl-5']"></v-toolbar-title>
+      <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items v-if="!isMobile" v-for="(item, i) in navLinks" :key="i" class="hidden-sm-and-down">
+      <v-toolbar-items v-for="(item, i) in navLinks" :key="i" class="hidden-sm-and-down">
         <v-btn flat :href="item.to" :class="[active(item.to) ? 'btn--active': '']">{{item.title}}</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
-      <v-toolbar-items v-if="!isMobile" class="hidden-sm-and-down pr-5">
+      <v-toolbar-items class="hidden-sm-and-down pr-5">
         <v-menu offset-y>
           <v-btn flat slot="activator">
             {{user.name}}
@@ -110,7 +108,6 @@
       data () {
           return {
               name: 'NavBar',
-              isMobile: window.innerWidth < 960,
               clipped: false,
               drawer: false,
               fixed: true,
@@ -154,18 +151,11 @@
           }
       },
       mounted () {
-          this.onResize();
       },
       methods: {
           active(path) {
               return ('#' + this.$route.path) === path
           },
-          onResize () {
-              let that = this;
-              return window.addEventListener('resize', function() {
-                  that.isMobile = window.innerWidth < 960;
-              });
-          }
       }
   }
 </script>
