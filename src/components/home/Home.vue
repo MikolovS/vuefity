@@ -9,15 +9,15 @@
                   class="white--text"
           >
             <img src="src/assets/vuetify.png" alt="Vuetify.js" height="200">
-            <h1 class="white--text mb-2 display-1 text-xs-center">Parallax Template</h1>
-            <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
+            <h1 class="white--text mb-2 display-1 text-xs-center">Pole&Rock</h1>
+            <div class="subheading mb-3 text-xs-center">Студия танца и акробатики на пилоне</div>
             <v-btn
                     class="blue lighten-2 mt-5"
                     dark
                     large
                     to="/qwerty"
             >
-              Get Started
+              Записаться
             </v-btn>
           </v-layout>
         </v-parallax>
@@ -32,7 +32,7 @@
         >
           <v-flex xs12 sm4 class="my-3">
             <div class="text-xs-center">
-              <h2 class="headline">The best way to start developing</h2>
+              <h2 class="headline">Основные направления</h2>
               <span class="subheading">
                   Cras facilisis mi vitae nunc
                 </span>
@@ -40,49 +40,40 @@
           </v-flex>
           <v-flex xs12>
             <v-container grid-list-xl>
-              <v-layout row wrap align-center>
+              <v-layout row wrap align-start>
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
-                    <div class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
-                    </div>
+                    <v-card-media src="src/assets/home/pole_sport.jpg" height="300px">
+                    </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Material Design</div>
+                      <div class="headline text-xs-center"><h4>Pole Sport</h4></div>
                     </v-card-title>
                     <div>
-                      Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                      Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                      <b>Pole Sport</b> - направление пилонного спорта, входящее в состав дисциплин воздушно-силовой атлетики. Красота и сила исполнения  сложных элементов крайне важны в этом  зрелищном виде спорта. Занятия pole sport нужны и полезны как начинающим без физической подготовки, так и профессиональным спортсменам.
                     </div>
                   </v-card>
                 </v-flex>
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
-                    <div class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
-                    </div>
+                      <v-card-media src="src/assets/home/pole_kids.jpg" height="300px">
+                      </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">Fast development</div>
+                      <div class="headline"><h4>Pole Kids</h4></div>
                     </v-card-title>
                     <div>
-                      Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                      Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                      <b>Pole Kids</b> - это программа обучения, которая подстроена специально под детскую категорию, учитывая её возрастные особенности. Во время занятий дети научатся красивым акробатическим элементам на пилоне, укрепят здоровье и выносливость, приобретут хорошую физическую форму, а главное - им привьется любовь к спорту и танцам.
                     </div>
                   </v-card>
                 </v-flex>
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
-                    <div class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
-                    </div>
+                      <v-card-media src="src/assets/home/exotic.jpg" height="300px">
+                      </v-card-media>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Completely Open Sourced</div>
+                      <div class="headline text-xs-center"><h4>Exotic Pole Dance</h4></div>
                     </v-card-title>
                     <div>
-                      Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                      Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                      <b>Exotic Pole Dance</b> - это смесь женственности и силового спорта, привлекательности женского тела и рельефности мышц, открытости движений и чарующей индивидуальностью. На тренировках вы научитесь грации и женственности, вам покажут как можно двигаться двигаться красиво и изящно. Такой вид танца призван не оставить равнодушным ни одного мужчину или женщину.
                     </div>
                   </v-card>
                 </v-flex>
@@ -172,9 +163,11 @@ import VList from "vuetify/es5/components/VList/VList";
 import VCard from "vuetify/es5/components/VCard/VCard";
 import VCardTitle from "vuetify/es5/components/VCard/VCardTitle";
 import VContent from "vuetify/es5/components/VGrid/VContent";
+import VCardMedia from "vuetify/es5/components/VCard/VCardMedia";
 
 export default {
     components: {
+        VCardMedia,
         VContent,
         VCardTitle,
         VCard,
