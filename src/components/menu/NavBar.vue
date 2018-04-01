@@ -56,13 +56,15 @@
     </v-navigation-drawer>
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title>
+          <a :href="site.home" class="siteTitle" :class="[active('#/') ? 'not-active': '']">{{ site.name }}</a>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items v-for="(item, i) in navLinks" :key="i" class="hidden-sm-and-down">
         <v-btn flat :href="item.to" :class="[active(item.to) ? 'btn--active': '']">{{item.title}}</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down pr-5">
+      <v-toolbar-items class="hidden-sm-and-down">
         <v-menu offset-y>
           <v-btn flat slot="activator">
             {{user.name}}
@@ -76,7 +78,7 @@
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                <v-list-tile-title>111{{ item.title }}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </v-list>
@@ -111,24 +113,47 @@
               clipped: false,
               drawer: false,
               fixed: true,
-              title: 'Vuetify.js',
+              site: {
+                  name : 'Rock&Pole',
+                  home : '#/'
+              } ,
 
               navLinks: [
                   {
-                      title: 'Home',
-                      to: '#/',
-                      icon: 'home',
-                  },
-                  {
-                      title: 'Qwerty',
-                      to: '#/qwerty',
+                      title: 'Направления',
+                      to: '#/training',
                       icon: 'bubble_chart',
                   },
                   {
-                      title: 'Instagram',
-                      to: '#/instagram',
+                      title: 'Команда',
+                      to: '#/command',
                       icon: 'theaters',
-                  }
+                  },
+                  {
+                      title: 'Рассписание',
+                      to: '#/timetable',
+                      icon: 'build',
+                  },
+                  {
+                      title: 'Инстаграм',
+                      to: '#/instagram',
+                      icon: 'power_settings_new'
+                  },
+                  {
+                      title: 'Блог',
+                      to: '#/blog',
+                      icon: 'power_settings_new'
+                  },
+                  {
+                      title: 'Стоимость',
+                      to: '#/price',
+                      icon: 'power_settings_new'
+                  },
+                  {
+                      title: 'Контакты',
+                      to: '#/contact',
+                      icon: 'power_settings_new'
+                  },
               ],
 
               userLinks: [
@@ -165,4 +190,16 @@
     .main {
         min-height: 100%;
     }
+
+    .siteTitle {
+        text-decoration: none !important;
+        color: black !important;
+    }
+
+  .not-active {
+      pointer-events: none;
+      cursor: default;
+      text-decoration:none;
+      color:black;
+  }
 </style>
